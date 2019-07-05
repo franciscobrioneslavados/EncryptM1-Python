@@ -47,13 +47,13 @@ import binascii
 start_time = time.time()
 cont = 0
 count = 0
-test = [ '00', '21', '42', '63', '84', 'a5', 'c6', 'e7']
-c1 = 'a9f3f74e15e6c00988d052f2fe2ac19d'
+test = ['00', '21', '42', '63', '84', 'a5', 'c6', 'e7']
+c1 = '6fffccd008eb302ce8962307420ef1f6'
 
 
-for item in product(test, repeat=12):
+for item in product(test, repeat=9):
     cont = cont + 1
-    strkey = ''.join(item) + '00000000'
+    strkey = '21a521' + ''.join(item) + '00000000'
     IV = binascii.unhexlify('00000000000000000000000000000000')
     key = binascii.unhexlify(strkey)
     encryptor = AES.new(key, AES.MODE_CBC, IV=IV)
@@ -64,7 +64,7 @@ for item in product(test, repeat=12):
     textEnc = binascii.hexlify(text1)
     textEnc2 = binascii.hexlify(text2)
 
-    if (cont == 10000000):
+    if (cont == 1000000):
         count = count + 1
         prox_time = (time.time() - start_time) / 60
         print 'Key: ' + strkey + ' Texto Encriptado 1: '+ textEnc+ ' Texto Encriptado 2: '+ textEnc2+' Cont: ' + str(cont * count) + ' Time: ' + str(prox_time)
