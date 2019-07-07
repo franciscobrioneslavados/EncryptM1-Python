@@ -5,6 +5,7 @@ from Crypto.Cipher import AES
 from Crypto import Random
 from binascii import hexlify, unhexlify
 from datetime import datetime
+import time
 
 # ---------------------------------------------------
 # Nombre: GRUPO 21 K :  21 a5 21
@@ -14,23 +15,21 @@ from datetime import datetime
 # C2:  40 17 34 7b 1b e5 48 46 f9 c4 fc c1 bc e2 20 2d
 # ---------------------------------------------------
 
-
-#############  OBTENER HORA INICIO Y FIN ############
+print '-------------------------------------------------------'
+print '-------- Encriptor de Claves AES CIISA 2019 -----------'
+print '-------------------------------------------------------'
+print ''
 fechaInicio = datetime.now()
-# al final de la ejecucion
-
-
 print 'Hora de inicio: ' + str(fechaInicio)
-print ' '
+print ''
+print 'Mostrando a cada 100.000.000 de conbinaciones'
 
 a=['00','21','42','63','84','a5','c6','e7']
 C1='6fffccd008eb302ce8962307420ef1f6'
 s=0
 fila=0
 maximo=10000000
-
-print 'Se imprimira cada: '     + str(maximo) + ' intentos de encontrar clave correcta'
-print " "
+start_time = time.time()
 
 for i in chain(product(a,repeat=9)):
         s=s+1
@@ -42,11 +41,19 @@ for i in chain(product(a,repeat=9)):
         mb1 = unhexlify('686f6c61000000000000000000000000')
         text=encriptor.encrypt(mb1)
         text_enc_hx=hexlify(text)
+        prox_time = (time.time() - start_time) / 60
         if (s==maximo):
-                print "Intento Nro: " + str(fila) + ' \n' + 'LLave: ' +llavecambiante + ' \n' + 'Texto Encriptado: ' + text_enc_hx + ' \n' + 'Clave a encontrar: ' + C1 + '\n\n'
+                print "Intento Nº: " + str(fila / 10000000)  +\
+                      '; LLave: ' +llavecambiante +\
+                      '; Texto Encriptado: ' + text_enc_hx  +\
+                      '; Clave a encontrar: ' + C1 +\
+                      '; Tiempo Transcurrido: '+str(prox_time)
                 s=0
         if text_enc_hx==C1:
                 break
+
+print ''
+print '------------------------------------------------------'
 print "La llave: " + llavecambiante + ' fue usada para: '+ C1
 fechaTermino = datetime.now()
 tiempo = fechaTermino - fechaInicio # Devuelve tiempo de ejecucion
