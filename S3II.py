@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 import codecs
 from itertools import product
 from itertools import chain
@@ -22,7 +23,7 @@ print ''
 fechaInicio = datetime.now()
 print 'Hora de inicio: ' + str(fechaInicio)
 print ''
-print 'Mostrando a cada 100.000.000 de conbinaciones'
+print 'Mostrando a cada 10.000.000 de conbinaciones'
 
 a=['00','21','42','63','84','a5','c6','e7']
 C1='6fffccd008eb302ce8962307420ef1f6'
@@ -54,7 +55,9 @@ for i in chain(product(a,repeat=9)):
 
 print ''
 print '------------------------------------------------------'
-print "La llave: " + llavecambiante + ' fue usada para: '+ C1
+print "Total de Combinaciones: " + fila
+print "La llave: " + llavecambiante
+print ' fue usada para: '+ C1
 fechaTermino = datetime.now()
 tiempo = fechaTermino - fechaInicio # Devuelve tiempo de ejecucion
 segundos = tiempo.seconds
