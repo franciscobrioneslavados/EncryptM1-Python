@@ -44,7 +44,7 @@ for i in chain(product(a,repeat=9)):
         text_enc_hx=hexlify(text)
         prox_time = (time.time() - start_time) / 60
         if (s==maximo):
-                print "Intento Nº: " + str(fila / 10000000)  +\
+                print 'Intento Nº: ' + str(fila / 10000000)  +\
                       '; LLave: ' +llavecambiante +\
                       '; Texto Encriptado: ' + text_enc_hx  +\
                       '; Clave a encontrar: ' + C1 +\
@@ -55,14 +55,14 @@ for i in chain(product(a,repeat=9)):
 
 print ''
 print '------------------------------------------------------'
-print "Total de Combinaciones: " + fila
-print "La llave: " + llavecambiante
-print ' fue usada para: '+ C1
+print 'Total de Combinaciones: ' +  str(fila)
+print 'La llave: ' + llavecambiante
+print 'Uso para: '+ C1
 fechaTermino = datetime.now()
 tiempo = fechaTermino - fechaInicio # Devuelve tiempo de ejecucion
 segundos = tiempo.seconds
-print "texto Encontrado en la conbinacion: "+str(fila)
-print "Hora Termino: " + str(fechaTermino)
-print "Total transcurrido: " + str(tiempo)
-print " "
+print 'texto Encontrado en la conbinacion: '+str(fila)
+print 'Hora Termino: ' + str(fechaTermino)
+print 'Total transcurrido: ' + str(tiempo)
+print ' '
 
